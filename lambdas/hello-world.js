@@ -1,4 +1,7 @@
 exports.handler = async () => {
-    const helloWorldMessage = 'Hello World';
-    return helloWorldMessage;
+    const response = {
+        statusCode: 200,
+        body: 'Hello World'
+    };
+    return response;
 }
