@@ -1,4 +1,4 @@
 exports.handler = async () => {
-    const helloWorldMessage = 'Hello World'
-    return helloWorldMessage
+    const helloWorldMessage = 'Hello World';
+    return helloWorldMessage;
 }
