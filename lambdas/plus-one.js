@@ -3,8 +3,9 @@ const sqs = new AWS.SQS({ region: 'eu-west-3' });
 
 exports.createInquiry = async (event) => {
     const INQUIRY_PROCESSING_QUEUE_URL = process.env.INQUIRY_PROCESSING_QUEUE_URL;
-    
-    const number = event.number
+    const data = JSON.parse(event.body)
+    console.log(data);
+    const number = data.number
     console.log('NUMBER: ', number);
 
     const messageId = await sqs
@@ -17,6 +18,7 @@ exports.createInquiry = async (event) => {
 
     console.log(`Message ${messageId} and ${number} sent to queue`);
 
+    
     return {
         statusCode: 200,
         body: JSON.stringify(number)
@@ -28,5 +30,8 @@ exports.processInquiry = async(event) => {
     const numberPlusOne = +number + 1;
     console.log(numberPlusOne);
     console.log(typeof numberPlusOne);
-    return numberPlusOne;
+    return {
+        statusCode: 200,
+        body: JSON.stringify(numberPlusOne)
+    };
 }
